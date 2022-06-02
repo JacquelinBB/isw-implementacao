@@ -29,12 +29,6 @@ $ make clean
 
 *Para saber mais*
 
-# Próprios projetos individuais
-> Exemplo 1 ->
+
 ##### Resumo:
 - A
-
-##### Habilidades usadas:
-- A
-
-*Para saber mais, clique abaixo*
