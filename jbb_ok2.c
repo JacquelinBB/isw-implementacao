@@ -30,7 +30,7 @@ FILE *arq;
 FILE *arqBin;
 int num[1000], i = 0, decimal = 0, pageDecimal = 0, offsetDecimal = 0, calculo, translatedAddresses = 0;
 char *ponteiroConversor;
-char pageBin[32], offsetBin[32], bin[256];
+char pageBin[32], offsetBin[32];
 float pageFaultRate, tlbHitRate, pageFault = 0, tlbHits = 0;
 int indice = 0;
 
