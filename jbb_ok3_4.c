@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
         //printf("---Number Binary of Page is: %s---", pageBin);
         int length1 = strlen(pageBin);
         pageDecimal = conversorDecimal(pageBin, length1);
-        printf("---Number Decimal of Page is: %d---", pageDecimal);
+        //printf("---Number Decimal of Page is: %d---", pageDecimal);
         separarOffset(ponteiroConversor, offsetBin);
         //printf("---Number Binary of Offset is: %s---", offsetBin);
         int length2 = strlen(offsetBin);
