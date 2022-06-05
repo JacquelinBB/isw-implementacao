@@ -26,7 +26,7 @@ int separarPage(char *copiarDaqui, char *colarAqui);   // OK
 int separarOffset(char *copiarDaqui, char *colarAqui); // OK
 int conversorDecimal(char bin[], int length);          // OK
 int lerBackStore(int);                                 // OK
-int lerBackStoreCheio(int pageDecimal, int pos);
+int lerBackStoreCheio(int pageDecimal, int pos);       // OK
 
 FILE *arq;
 FILE *arqBin;
@@ -46,27 +46,15 @@ int main(int argc, char *argv[])
         ponteiroConversor = conversorBinario(num[i]);
         // printf("---Number Binary of %d is: %s---", num[i], ponteiroConversor);
         separarPage(ponteiroConversor, pageBin);
-        // printf("---Number Binary of Page is: %s---", pageBin);
+        //printf("---Number Binary of Page is: %s---", pageBin);
         int length1 = strlen(pageBin);
-        for (int j = 0; j < length1; j++)
-        {
-            if (j == length1 - 1)
-            {
-                pageDecimal = conversorDecimal(pageBin, length1);
-                // printf("---Number Decimal of Page is: %d---", pageDecimal);
-            }
-        }
+        pageDecimal = conversorDecimal(pageBin, length1);
+        printf("---Number Decimal of Page is: %d---", pageDecimal);
         separarOffset(ponteiroConversor, offsetBin);
-        // printf("---Number Binary of Offset is: %s---", offsetBin);
+        //printf("---Number Binary of Offset is: %s---", offsetBin);
         int length2 = strlen(offsetBin);
-        for (int j = 0; j < length2; j++)
-        {
-            if (j == length2 - 1)
-            {
-                offsetDecimal = conversorDecimal(offsetBin, length2);
-                // printf("---Number Decimal of Offset is: %d---", offsetDecimal);
-            }
-        }
+        offsetDecimal = conversorDecimal(offsetBin, length2);
+        //printf("---Number Decimal of Offset is: %d---", offsetDecimal);
         free(ponteiroConversor);
 
         // O PAGE NAO ESTA NA TABELA DE PAGINAS
@@ -224,14 +212,11 @@ int separarOffset(char *copiarDaqui, char *colarAqui)
 
 int conversorDecimal(char bin[], int length)
 {
-    int lugar = 0, x = length - 1;
-    decimal = 0;
+    int i = 0, decimal = 0;
 
-    while (x >= 0)
+    for (i = 0; i < length; i++)
     {
-        decimal = decimal + (bin[x] - 48) * pow(2, lugar);
-        x--;
-        lugar++;
+        decimal += (bin[length - i - 1] == '1') ? (1 << i) : 0;
     }
 
     return decimal;
