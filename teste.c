@@ -42,11 +42,17 @@ int num[1000], i = 0, decimal = 0, pageDecimal = 0, offsetDecimal = 0, calculo, 
 char *ponteiroConversor;
 char pageBin[32], offsetBin[32];
 float pageFaultRate, tlbHitRate, pageFault = 0, tlbHits = 0, tlbMiss = 0;
-int indice = 0, position = 0, contador = 0, k = -1, positionTlb = 0, contadorTlb = 0, positionNew = 0, stop, countTlb = 0;
+int indice = 0, position = 0, contador = 0, k = -1, positionTlb = 0, contadorTlb = 0, positionNew = 0, stop;
 
 int main(int argc, char *argv[])
 {
     arq = fopen("addresses.txt", "r");
+    if (arq == NULL)
+    {
+        printf("ERRO: Em ler o arquivo.\n");
+        exit(0);
+    }
+    
     fpos_t posicao;
     fgetpos(arq, &posicao);
     while (fscanf(arq, "%d", &numInstrucao) != EOF)
@@ -178,7 +184,6 @@ int main(int argc, char *argv[])
                 }
             }
         }
-        countTlb++;
     }
     fclose(arq);
     printf("Number of Translated Addresses = %d\n", translatedAddresses);
