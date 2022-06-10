@@ -33,7 +33,7 @@ FILE *arqBin;
 int num[1000], i = 0, decimal = 0, pageDecimal = 0, offsetDecimal = 0, calculo, translatedAddresses = 0;
 char *ponteiroConversor;
 char pageBin[32], offsetBin[32];
-float pageFaultRate, tlbHitRate, pageFault = 0, tlbHits = 0;
+float pageFaultRate, pageFault = 0;
 int indice = 0, position = 0, contador = 0, k = -1;
 
 int main(int argc, char *argv[])
@@ -143,9 +143,6 @@ int main(int argc, char *argv[])
     printf("Page Faults = %.0f\n", pageFault);
     pageFaultRate = pageFault / 1000;
     printf("Page Fault Rate = %.3f\n", pageFaultRate);
-    printf("TLB Hits = %.0f\n", tlbHits);
-    tlbHitRate = tlbHits / 1000;
-    printf("TLB Hit Rate =  %.3f\n", tlbHitRate);
 }
 
 int lerArquivo(char argv[])
