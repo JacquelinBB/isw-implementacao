@@ -41,7 +41,7 @@ FILE *arqBin;
 int num[1000], i = 0, decimal = 0, pageDecimal = 0, offsetDecimal = 0, calculo, translatedAddresses = 0, posicao, numInstrucao;
 char *ponteiroConversor;
 char pageBin[32], offsetBin[32];
-float pageFaultRate, tlbHitRate, pageFault = 0, tlbHits = 0, tlbMiss = 0;
+float pageFaultRate, tlbHitRate, pageFault = 0, tlbHits = 0;
 int indice = 0, position = 0, contador = 0, k = -1, positionTlb = 0, contadorTlb = 0, positionNew = 0, stop;
 
 int main(int argc, char *argv[])
@@ -159,7 +159,6 @@ int main(int argc, char *argv[])
         // O PAGE ESTÁ NA TABELA DE PAGINAS
         else if (tamPageTable[pageDecimal].bit == 1)
         {
-            tlbMiss = tlbMiss + 1;
             tamPageTable[pageDecimal].time = contador;
             printf("Virtual address: %d ", numInstrucao);
             printf("Physical address: %u ", tamPageTable[pageDecimal].frame * 256 + offsetDecimal);
@@ -190,7 +189,6 @@ int main(int argc, char *argv[])
     printf("Page Faults = %.0f\n", pageFault);
     pageFaultRate = pageFault / 1000;
     printf("Page Fault Rate = %.3f\n", pageFaultRate);
-    printf("TLB Miss = %.0f\n", tlbMiss);
     printf("TLB Hits = %.0f\n", tlbHits);
     tlbHitRate = tlbHits / 1000;
     printf("TLB Hit Rate =  %.3f\n", tlbHitRate);
