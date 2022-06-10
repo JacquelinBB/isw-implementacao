@@ -3,32 +3,40 @@
 
 # Sumário
 - [Como clonar o repositório](#como-clonar-o-repositório)
-- [Como utilizar o programa](#como-utilizar-o-programa)
-- [Sobre a implementação de uma memória virtual](#sobre-a-implementação-de-uma-memória-virtual)
+- [Como compilar o programa](#como-compilar-o-programa)
+- [Como testar o programa](#como-testar-o-programa)
+- [Como executar o programa](#como-executar-o-programa)
 
 ##### Como implementar o projeto
 # Como clonar o repositório
 ```bash
 $ git clone https://github.com/JacquelinBB/infra-sw-jbb.git
-$ cd main
-$ make
-$ make run
-$ make clean
 ```
-# Como utilizar o programa
+# Como compilar o programa
 ```bash
-$ make run
+$ cd "nome do aquivo" 
+$ make
+```
+# Como testar o programa
+- testff: ./vm addresses.txt fifo fifo
+- testll: ./vm addresses.txt lru lru
+- testfl: ./vm addresses.txt fifo lru
+- testlf: ./vm addresses.txt lru fifo
+- testerro1: ./vm addresses.txt parametro errado
+- testerro2: ./vm addresses.txt quantidade
+# Como executar o programa
+```bash
+$ make "nome do teste"
 $ make clean
 ```
-#### X
+## Arquivos .c utilizados:
+- jbb_final_ate_4.c
+- jbb_tlb_fifo.c
 
-# Sobre a implementação de uma memória virtual
-> Exemplo 1 ->
-## Etapas:
-- Sla.
+## Outros arquivos utilizados:
+- Makefile
+- addresses.txt
+- BACK_STORE.bin
 
-*Para saber mais*
-
-
-##### Resumo:
-- A
+## Sistema operacional que foi implementado:
+*Foi utilizado o sistema operacional Linux para a implementação*
