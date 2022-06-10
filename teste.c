@@ -42,7 +42,7 @@ int num[1000], i = 0, decimal = 0, pageDecimal = 0, offsetDecimal = 0, calculo, 
 char *ponteiroConversor;
 char pageBin[32], offsetBin[32];
 float pageFaultRate, tlbHitRate, pageFault = 0, tlbHits = 0, tlbMiss = 0;
-int indice = 0, position = 0, contador = 0, k = -1, positionTlb = 0, contadorTlb = 0, positionNew = 0, stop, teste = 0, k2 = -1, countTlb = 0;
+int indice = 0, position = 0, contador = 0, k = -1, positionTlb = 0, contadorTlb = 0, positionNew = 0, stop, countTlb = 0;
 
 int main(int argc, char *argv[])
 {
@@ -84,7 +84,6 @@ int main(int argc, char *argv[])
         }
         if (stop != 0)
         {
-        
         }
 
         // O PAGE NAO ESTÁ NA TABELA DE PAGINAS E DEU PAGE FAULT
@@ -148,6 +147,7 @@ int main(int argc, char *argv[])
             }
             translatedAddresses = translatedAddresses - 1;
             fsetpos(arq, &posicao);
+            contador++;
         }
 
         // O PAGE ESTÁ NA TABELA DE PAGINAS
@@ -159,6 +159,7 @@ int main(int argc, char *argv[])
             printf("Physical address: %u ", tamPageTable[pageDecimal].frame * 256 + offsetDecimal);
             printf("Value: %d\n", tamMemoria[tamPageTable[pageDecimal].frame].binValor[offsetDecimal]);
             fgetpos(arq, &posicao);
+            contador++;
 
             // ATUALIZAR NA TLB SEM LOTAR
             if (positionTlb < 16)
@@ -175,35 +176,11 @@ int main(int argc, char *argv[])
                 {
                     positionTlb = 0;
                 }
-                if (!strcmp(argv[3], "lru"))
-                {
-                    int menorTlb = countTlb;
-                    for (int j = 0; j < 16; j++)
-                    {
-                        if (tamTlb[j].tlbTime < menorTlb && tamTlb[j].tlbBit != 0)
-                        {
-                            menorTlb = tamTlb[j].tlbTime;
-                            pos = tamTlb[j].tlbFrame; // PARA SUBSTITUIR
-                            k2 = j;
-                        }
-                    }
-                    // APAGAR ANTIGO
-                    tamTlb[k2].tlbBit = 0;
-                    tamTlb[k2].tlbFrame = -1;
-                    // ATUALIZAR NOVO
-                    tamTlb[positionTlb].tlbBit = 1;
-                    tamTlb[positionTlb].tlbFrame = pos;
-                    // TEMPO GLOBAL
-                    tamTlb[positionTlb].tlbTime = countTlb;
-                }
             }
         }
         countTlb++;
-        contador++;
     }
     fclose(arq);
-    printf("%d\n", teste);
-    // tlbHits = 1000 - tlbMiss;
     printf("Number of Translated Addresses = %d\n", translatedAddresses);
     printf("Page Faults = %.0f\n", pageFault);
     pageFaultRate = pageFault / 1000;
