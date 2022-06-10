@@ -46,7 +46,18 @@ int indice = 0, position = 0, contador = 0, k = -1, positionTlb = 0, contadorTlb
 
 int main(int argc, char *argv[])
 {
-    arq = fopen("addresses.txt", "r");
+    if (strcmp(argv[2], "fifo") != 0 && (strcmp(argv[2], "lru") != 0))
+    {
+        printf("ERRO: Argumento passado do algoritmo fifo de substituição para a memória está errado");
+        exit(0);
+    }
+    if (strcmp(argv[3], "fifo") != 0 && (strcmp(argv[3], "lru") != 0))
+    {
+        printf("ERRO: Argumento passado do algoritmo fifo de substituição para a memória está errado");
+        exit(0);
+    }
+    
+    arq = fopen(argv[1], "r");
     if (arq == NULL)
     {
         printf("ERRO: Em ler o arquivo.\n");
