@@ -17,7 +17,6 @@ typedef struct tlb
     int tlbFrame;
     int tlbPage;
     int tlbBit;
-    int tlbTime;
 } Tlb;
 
 typedef struct memoriaPrincipal
