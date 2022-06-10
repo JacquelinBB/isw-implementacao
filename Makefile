@@ -1,6 +1,6 @@
 # -*- MakeFile -*- #
 
-vm: jbb7.c
+vm: jbb_final_ate_4.c
 	gcc $< -o $@
 
 testff:
