@@ -16,10 +16,10 @@ testlf:
 	./vm addresses.txt lru fifo
 
 testerro1:
-	./vm addresses.txt quero nota
+	./vm addresses.txt parametro errado
 
 testerro2:
-	./vm addresses.txt erro
+	./vm addresses.txt quantidade de parametro
 
 clean: 
 	rm vm
