@@ -27,7 +27,7 @@ $ make
 - testerro2:    ./vm addresses.txt quantidade
 # Como executar o programa
 ```bash
-$ make "nome do teste"
+$ make "nome da pasta"
 $ make clean
 ```
 *Para um novo teste novamente, depois do make clean, de make novamente, e repita o processo citado acima em "Como executar o programa"*
