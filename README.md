@@ -10,7 +10,7 @@
 ##### Como implementar o projeto
 # Como clonar o repositório
 ```bash
-$ git clone https://github.com/JacquelinBB/infra-sw-jbb.git
+$ git clone  https://github.com/JacquelinBB/isw-implementacao.git
 ```
 # Como compilar o programa
 ```bash
