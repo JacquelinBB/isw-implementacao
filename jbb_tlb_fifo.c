@@ -17,6 +17,7 @@ typedef struct tlb
     int tlbFrame;
     int tlbPage;
     int tlbBit;
+    int tlbTime;
 } Tlb;
 
 typedef struct memoriaPrincipal
@@ -55,14 +56,14 @@ int main(int argc, char *argv[])
         printf("ERRO: Argumento passado do algoritmo fifo de substituição para a memória está errado");
         exit(0);
     }
-    
+
     arq = fopen(argv[1], "r");
     if (arq == NULL)
     {
         printf("ERRO: Em ler o arquivo.\n");
         exit(0);
     }
-    
+
     fpos_t posicao;
     fgetpos(arq, &posicao);
     while (fscanf(arq, "%d", &numInstrucao) != EOF)
