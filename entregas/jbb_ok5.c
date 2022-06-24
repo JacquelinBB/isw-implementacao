@@ -194,10 +194,10 @@ int main(int argc, char *argv[])
     fclose(arq);
     printf("Number of Translated Addresses = %d\n", translatedAddresses);
     printf("Page Faults = %.0f\n", pageFault);
-    pageFaultRate = pageFault / 1000;
+    pageFaultRate = pageFault / translatedAddresses;
     printf("Page Fault Rate = %.3f\n", pageFaultRate);
     printf("TLB Hits = %.0f\n", tlbHits);
-    tlbHitRate = tlbHits / 1000;
+    tlbHitRate = tlbHits / translatedAddresses;
     printf("TLB Hit Rate =  %.3f\n", tlbHitRate);
 }
 
