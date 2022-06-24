@@ -45,7 +45,7 @@ int i = 0, decimal = 0, pageDecimal = 0, offsetDecimal = 0, calculo, translatedA
 char *ponteiroConversor;
 char pageBin[32], offsetBin[32], formato[3];
 float pageFaultRate, tlbHitRate, pageFault = 0, tlbHits = 0;
-int indice = 0, position = 0, contador = 0, k = -1, kTlb = -1, positionTlb = 0, contadorTlb = 0, positionNew = 0, stop;
+int indice = 0, position = 0, contador = 0, k = -1, kTlb = -1, positionTlb = 0, positionNew = 0, stop;
 
 int main(int argc, char *argv[])
 {
