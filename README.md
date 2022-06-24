@@ -32,8 +32,7 @@ $ make clean
 ```
 *Para um novo teste novamente, depois do make clean, de make novamente, e repita o processo citado acima em "Como executar o programa"*
 ## Arquivos .c utilizados:
-- jbb_final_ate_4.c
-- jbb_tlb_fifo.c
+- jbb.c
 
 ## Outros arquivos utilizados:
 - Makefile
