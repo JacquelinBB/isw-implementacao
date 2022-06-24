@@ -45,7 +45,7 @@ int i = 0, decimal = 0, pageDecimal = 0, offsetDecimal = 0, calculo, translatedA
 char *ponteiroConversor;
 char pageBin[32], offsetBin[32], formato[3];
 float pageFaultRate, tlbHitRate, pageFault = 0, tlbHits = 0;
-int indice = 0, position = 0, contador = 0, k = -1, positionTlb = 0, contadorTlb = 0, positionNew = 0, stop;
+int indice = 0, position = 0, contador = 0, k = -1, kTlb = -1, positionTlb = 0, contadorTlb = 0, positionNew = 0, stop;
 
 int main(int argc, char *argv[])
 {
@@ -83,10 +83,11 @@ int main(int argc, char *argv[])
             // ESTÁ NA TLB E DEU TLB HIT
             if (tamTlb[j].tlbPage == pageDecimal)
             {
-                if(tamTlb[positionTlb].tlbBit = 1){
+                if(tamTlb[j].tlbBit = 1){
                     stop = 1;
                     tlbHits = tlbHits + 1;
                     tamPageTable[pageDecimal].time = contador;
+                    tamTlb[j].tlbTime = contador;
                     printf("Virtual address: %d ", numInstrucao);
                     printf("Physical address: %u ", tamPageTable[pageDecimal].frame * 256 + offsetDecimal);
                     printf("Value: %d\n", tamMemoria[tamPageTable[pageDecimal].frame].binValor[offsetDecimal]);
@@ -113,8 +114,9 @@ int main(int argc, char *argv[])
             if (positionTlb < 16)
             {  
                 tamTlb[positionTlb].tlbBit = 1;
-                tamTlb[positionTlb].tlbFrame = indice;
+                tamTlb[positionTlb].tlbFrame = tamPageTable[pageDecimal].frame;
                 tamTlb[positionTlb].tlbPage = pageDecimal;
+                tamTlb[positionTlb].tlbTime = contador;
             }
             positionTlb = positionTlb + 1;
             // ATUALIZAR NA TLB LOTADA
@@ -124,7 +126,26 @@ int main(int argc, char *argv[])
                 {   
                     positionTlb = 0;
                 }
-            }   
+            } 
+            if (positionTlb >= 16)
+            {
+                int menorTlb = contador;
+                if (!strcmp(argv[3], "lru"))
+                {   
+                    for (int j = 0; j < 16; j++)
+                    {
+                        if (tamTlb[j].tlbTime < menorTlb && tamTlb[j].tlbBit != 0)
+                        {
+                            menorTlb = tamTlb[j].tlbTime;
+                            kTlb = j;
+                        }
+                    }
+                    tamTlb[kTlb].tlbBit = 1;
+                    tamTlb[kTlb].tlbFrame = tamPageTable[pageDecimal].frame;
+                    tamTlb[kTlb].tlbPage = pageDecimal;
+                    tamTlb[kTlb].tlbTime = contador;
+                }
+            }  
         }
         
         // O PAGE NAO ESTÁ NA TABELA DE PAGINAS E DEU PAGE FAULT
