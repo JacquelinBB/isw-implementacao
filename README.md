@@ -24,10 +24,13 @@ $ make
 - testfl:       ./vm addresses.txt fifo lru
 - testlf:       ./vm addresses.txt lru fifo
 - testerro1:    ./vm addresses.txt parametro errado
-- testerro2:    ./vm addresses.txt quantidade
+- testerro2:    ./vm addresses.txt quantidade de parametro
+- testerro3:    ./vm addresses.txt fifo fifo f
+- testerro4:    ./vm addresses.txt fifo
+- testerro5:    ./vm addresses.doc fifo fifo
 # Como executar o programa
 ```bash
-$ make "nome da pasta"
+$ make "nome do teste"
 $ make clean
 ```
 *Para um novo teste novamente, depois do make clean, de make novamente, e repita o processo citado acima em "Como executar o programa"*
