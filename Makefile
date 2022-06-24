@@ -1,6 +1,6 @@
 # -*- MakeFile -*- #
 
-vm: jbb_final_ate_4.c
+vm: jbb.c
 	gcc $< -o $@
 
 testff:
@@ -20,6 +20,15 @@ testerro1:
 
 testerro2:
 	./vm addresses.txt quantidade de parametro
+
+testerro3:
+	./vm addresses.txt fifo fifo f
+
+testerro4:
+	./vm addresses.txt fifo
+
+testerro5:
+	./vm addresses.doc fifo fifo
 
 clean: 
 	rm vm
