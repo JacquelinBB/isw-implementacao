@@ -18,7 +18,6 @@ $ cd "nome do aquivo"
 $ make
 ```
 # Como testar o programa
-##### Para trocar de arquivo, altere o Makefile e coloque o nome do aquivo como jbb_tlb_fifo.c, se estiver usando o vim e der erro, uso o comando :wq!
 - testff:       ./vm addresses.txt fifo fifo
 - testll:       ./vm addresses.txt lru lru
 - testfl:       ./vm addresses.txt fifo lru
