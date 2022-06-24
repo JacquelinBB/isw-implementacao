@@ -34,6 +34,7 @@ void lerArquivo();
 char *conversorBinario(int);
 int separarPage(char *copiarDaqui, char *colarAqui);
 int separarOffset(char *copiarDaqui, char *colarAqui);
+int separarFormato(char *copiarDaqui, char *colarAqui, int quantidadeFormato);
 int conversorDecimal(char bin[], int length);
 int lerBackStore(int);
 int lerBackStoreCheio(int pageDecimal, int pos);
@@ -42,7 +43,7 @@ FILE *arq;
 FILE *arqBin;
 int i = 0, decimal = 0, pageDecimal = 0, offsetDecimal = 0, calculo, translatedAddresses = 0, posicao, numInstrucao;
 char *ponteiroConversor;
-char pageBin[32], offsetBin[32];
+char pageBin[32], offsetBin[32], formato[3];
 float pageFaultRate, tlbHitRate, pageFault = 0, tlbHits = 0;
 int indice = 0, position = 0, contador = 0, k = -1, positionTlb = 0, contadorTlb = 0, positionNew = 0, stop;
 
@@ -227,14 +228,24 @@ void testErroEntrada(char argv2[], char argv3[], int argc){
 void lerArquivo(char argv1[]){
 
     arq = fopen(argv1, "r");
-    // strcmp(argv[3], "lru") != 0 *encontrar-se numa formatação diferente daquela indicada no exemplo anexado.
+
+    //printf("%s-", argv1); // saída: addresses.txt
+    int quantidadeFormato = strlen(argv1);
+    //printf("%d-", quantidadeFormato); // saída: 13
+    separarFormato(argv1, formato, quantidadeFormato);
+    //printf("%s", formato); // saída: txt
+
+    if (strcmp(formato, "txt") != 0){
+        printf("ERRO: Formato do arquivo está errado.\n");
+        exit(0);
+    }
 
     if (arq == NULL)
     {
         printf("ERRO: Em ler o arquivo.\n");
         exit(0);
     }
-    // else printf("Arquivo addresses.txt foi aberto com sucesso---");
+    // else {printf("Arquivo addresses.txt foi aberto com sucesso---");}
 }
 
 char *conversorBinario(int num)
@@ -280,6 +291,20 @@ int separarOffset(char *copiarDaqui, char *colarAqui)
     while (*copiarDaqui != '\0')
     {
         *colarAqui = *(copiarDaqui + 24);
+        ++copiarDaqui;
+        ++colarAqui;
+    }
+    *colarAqui = '\0';
+
+    return 0;
+}
+
+int separarFormato(char *copiarDaqui, char *colarAqui, int quantidadeFormato)
+{
+    int total = quantidadeFormato - 3;
+    while (*copiarDaqui != '\0')
+    {
+        *colarAqui = *(copiarDaqui + total);
         ++copiarDaqui;
         ++colarAqui;
     }
